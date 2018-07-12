@@ -50,6 +50,7 @@ function saveStudent (data, res, callback) {
       data.student = res
       return callback(null, data, res)
     })
+    .catch(error => errorHandler(error, res))
 } 
 
 function fmtResult (data, res, callback) {

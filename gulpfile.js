@@ -16,4 +16,11 @@ gulp.task('build-lib', () =>
      }))
     .pipe(gulp.dest('dist/lib')))
 
-gulp.task('default', ['build-src', 'build-lib'])
+gulp.task('build-knex', () =>
+    gulp.src('knexfile.js')
+    .pipe(babel({
+        presets: ['env']
+     }))
+    .pipe(gulp.dest('dist/')))
+
+gulp.task('default', ['build-src', 'build-lib', 'build-knex'])

@@ -1,6 +1,7 @@
 import check from 'body-checker'
 import validator from 'validator'
 import composeWaterfall from 'lib/waterfall'
+import { errorHandler } from 'lib/error'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import db from '_db'
@@ -40,6 +41,7 @@ function validateUniqueness (data, res, callback) {
         ? callback({ message: 'User with email already exists', code: 409 })
         : callback(null, data, res)
     })
+    .catch(error => errorHandler(error, res))
 }
 
 function validateEmail (data, res, callback) {
@@ -82,11 +84,12 @@ function saveUser (data, res, callback) {
       data.user = res[0]
       return callback(null, data, res)
     })
+    .catch(error => errorHandler(error, res))
 }
 
 function generateToken (data, res, callback) {
   const token = jwt
-    .sign({ email: data.user.email, id: data.user.id }, process.env.SECRET, { expiresIn: '2h' })
+    .sign({ email: data.user.email, id: data.user.id }, process.env.TOKEN_SECRET, { expiresIn: '2h' })
   data.token = token
   return callback(null, data, res)
 }

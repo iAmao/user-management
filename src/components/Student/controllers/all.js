@@ -13,6 +13,7 @@ function findAllStudents (data, res, callback) {
       data.users = users
       return callback(null, data, res)
     })
+    .catch(error => errorHandler(error, res))
 }
 
 function fmtResult (data, res, callback) {

@@ -10,6 +10,7 @@ function findStudent (req, res, callback) {
         ? callback({ message: 'student not found', code: 404 })
         : callback(null, { student: students[0] } , res)
     })
+    .catch(error => errorHandler(error, res))
 }
 
 

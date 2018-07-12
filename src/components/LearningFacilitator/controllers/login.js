@@ -16,7 +16,7 @@ function checkBody (req, res, callback) {
       required: true
     }
   }, (err, body) => {
-    if (err) return callback({ message: `User ${err}`, code: 400 }) // eslint-disable-line
+    if (err) return callback({ message: `User ${err}`, code: 403 }) // eslint-disable-line
     body.auth = req.auth
     return callback(null, body, res)
   })
@@ -45,11 +45,12 @@ function findUser (data, res, callback) {
       }
       return callback({ message:  'invalid email password combo', code: 403 })
     })
+    .catch(error => errorHandler(error, res))
 }
 
 function generateToken (data, res, callback) {
   const token = jwt
-    .sign({ email: data.user.email, id: data.user.id }, process.env.SECRET, { expiresIn: '2h' })
+    .sign({ email: data.user.email, id: data.user.id }, process.env.TOKEN_SECRET, { expiresIn: '2h' })
   data.token = token
   return callback(null, data, res)
 }

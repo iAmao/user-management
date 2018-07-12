@@ -17,6 +17,7 @@ function deleteStudent (data, res, callback) {
     .where({ id: data.id })
     .del()
     .then(res =>  callback(null, data, res))
+    .catch(error => errorHandler(error, res))
 } 
 
 function fmtResult (data, res, callback) {

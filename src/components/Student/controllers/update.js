@@ -1,5 +1,4 @@
 import check from 'body-checker'
-import validator from 'validator'
 import composeWaterfall from 'lib/waterfall'
 import db from '_db'
 
@@ -42,6 +41,7 @@ function findStudent (data, res, callback) {
         ? callback({ message: 'student not found', code: 404 })
         : callback(null, data, res)
     })
+    .catch(error => errorHandler(error, res))
 }
 
 function saveStudent (data, res, callback) {
@@ -49,6 +49,7 @@ function saveStudent (data, res, callback) {
     .where({ id: data.student.id })
     .update(data.student)
     .then(res =>  callback(null, data, res))
+    .catch(error => errorHandler(error, res))
 } 
 
 function fmtResult (data, res, callback) {
