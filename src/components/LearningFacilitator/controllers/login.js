@@ -48,9 +48,8 @@ function findUser (data, res, callback) {
 }
 
 function generateToken (data, res, callback) {
-  console.log(data)
   const token = jwt
-    .sign({ email: data.user.email }, process.env.SECRET, { expiresIn: '2h' })
+    .sign({ email: data.user.email, id: data.user.id }, process.env.SECRET, { expiresIn: '2h' })
   data.token = token
   return callback(null, data, res)
 }

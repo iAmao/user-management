@@ -11,7 +11,7 @@
           "root": ["./"],
           "alias": {
             "@lf": "./src/components/LearningFacilitator",
-            "@user": "./src/components/User",
+            "@student": "./src/components/Student",
             "$routes": "./src/routes",
             "lib": "./lib",
             "_middlewares": "./src/middlewares",

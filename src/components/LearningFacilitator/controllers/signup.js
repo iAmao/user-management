@@ -79,15 +79,14 @@ function saveUser (data, res, callback) {
     .insert(data.user)
     .returning('*')
     .then(res => {
-      data.user = res
+      data.user = res[0]
       return callback(null, data, res)
     })
 }
 
 function generateToken (data, res, callback) {
-  console.log(data.user)
   const token = jwt
-    .sign({ email: data.user.email }, process.env.SECRET, { expiresIn: '2h' })
+    .sign({ email: data.user.email, id: data.user.id }, process.env.SECRET, { expiresIn: '2h' })
   data.token = token
   return callback(null, data, res)
 }
