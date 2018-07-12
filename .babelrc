@@ -10,12 +10,12 @@
         {
           "root": ["./"],
           "alias": {
-            "@user": "./src/services/user",
-            "@party": "./src/services/party",
+            "@lf": "./src/components/LearningFacilitator",
+            "@user": "./src/components/User",
             "$routes": "./src/routes",
             "lib": "./lib",
             "_middlewares": "./src/middlewares",
-            "_models": "./src/models"
+            "_db": "./src/db"
           }
         }
       ],
