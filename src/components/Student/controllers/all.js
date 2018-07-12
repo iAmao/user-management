@@ -17,7 +17,7 @@ function findAllStudents (data, res, callback) {
 }
 
 function fmtResult (data, res, callback) {
-  return callback(null, { statusCode: 200, users: data.users })
+  return callback(null, { statusCode: 200, students: data.users })
 }
 
 export default function (...args) {

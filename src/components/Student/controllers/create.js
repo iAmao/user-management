@@ -54,7 +54,7 @@ function saveStudent (data, res, callback) {
 } 
 
 function fmtResult (data, res, callback) {
-  return callback(null, { statusCode: 200, student: data.student[0] })
+  return callback(null, { statusCode: 201, student: data.student[0] })
 }
 
 export default function (...args) {

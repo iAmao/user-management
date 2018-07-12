@@ -17,6 +17,14 @@ global.sinon = sinon
 global.admin = {}
 
 global.authorization = null
+global.defaultStudent = {
+  "firstname": "Richard",
+  "lastname": "Drake",
+  "stack": "JS",
+  "is_active": true,
+  "cohort": 21,
+  "rating": 3
+}
 
 global.LF = { firstName: 'Redd', lastName: 'Green', email: 'redd.green@gmail.com', password: 'password' }
 global.setUp = () => {
@@ -36,7 +44,7 @@ global.setUp = () => {
 
 global.tearDown = () => {
   return Promise.all([
-    knex('learningFacilitators').del(),
-    knex('users').del()
+    knex('users').del(),
+    knex('learningFacilitators').del()
   ])
 }

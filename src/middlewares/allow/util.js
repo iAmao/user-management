@@ -5,7 +5,8 @@ exports.isAuth = function (req) {
   const authorization = req.headers.authorization
   if (authorization) {
     try {
-      return !!jwt.decode(authorization, process.env.TOKEN_SECRET)
+      jwt.verify(authorization, process.env.TOKEN_SECRET)
+      return true
     } catch (e) {
       logger.error(e)
       return false
